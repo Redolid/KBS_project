@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+.card{
+    
+    margin-left: 450px;
+}
+img {
+    height: 500px;
+}
+
+.card{
+    background-color:rgba(255, 251, 245, 0.699);
+}
+
+    </style>
+</head>
+
+
+<body>
+    {% load static %}
+
+    <div class="card" style="width: 600px;">
+
+        <img class="card-img-top" src="{% static 'courses/images/must.png' %}" alt="Card image cap">
+
+        <div class="card-header">
+                <h1>Must Study Plan</h1>
+        </div>
+        <div class="card-body">
+            <form class="form-group" action="" method="post"> 
+                {% csrf_token %}
+                    {{form}} 
+                <button type="submit" > Submit</button>
+            </form>
+        </div>
+
+      </div>
+
+    
+    
+
+</body>
+
+   
+
+
+</html>

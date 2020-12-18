@@ -1,0 +1,49 @@
+<table border="1">
+
+<!--If Student GPA is Higher than or equal to 2 print 6 courses-->
+
+
+{% for student in students %}
+{% if student.GPA >= 2%}
+        
+        <div class=" print6">   
+        {% for courses in course %}
+        {% if forloop.counter > 12 %}
+        <p></p>
+        {%else%}
+            {% if courses.semester == student.Term %}
+                {%if courses.level <= student.student_level and courses.Taken == False %}
+                    <tr>
+                        <td>{{ courses.id }}</td>
+                        <td>{{ courses.Course_name }}</td>
+                        <td>{{ courses.Course_code}}</td>
+                        <td>{{ courses.semester }}</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        {% endfor %}
+        </div>
+    <!-- If Student GPA is less than 2 print 4 courses only -->
+{% else %}
+<div class=" print6">       
+    {% for courses in course %}
+    {% if forloop.counter > 8 %}
+    <p></p>
+    {%else%}
+        {% if courses.semester == student.Term %}
+            {%if courses.level >= student.student_level and courses.Taken == False %}
+                <tr>
+                    <td>{{ courses.id }}</td>
+                    <td>{{ courses.Course_name }}</td>
+                    <td>{{ courses.Course_code}}</td>
+                    <td>{{ courses.semester }}</td>
+                </tr>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+    </div>
+{%endif%}
+{% endfor %}
+</table>

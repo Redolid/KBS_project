@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    
+  <head>
+    <meta charset="utf-8">
+    <title>Must Plan</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('.courses').click(function(){
+                var txt = "";
+                $('.courses:checked').each(function(){
+                    txt+=$(this).val(txt)
+                });
+                $('#courses1').val(txt);
+            });
+        });
+    </script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="multiple-select.js"></script>
+    <script>
+        $(function() {
+            $('#ms').change(function() {
+                console.log($(this).val());
+            }).multipleSelect({
+                width: '100%'
+            });
+        });
+    </script> -->
+    <style>
+       
+       body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #B0BEC5;
+    background-repeat: no-repeat
+}
+
+::placeholder {
+    color: #BDBDBD;
+    opacity: 1;
+    font-weight: 300
+}
+
+:-ms-input-placeholder {
+    color: #BDBDBD;
+    font-weight: 300
+}
+
+::-ms-input-placeholder {
+    color: #BDBDBD;
+    font-weight: 300
+}
+
+input,
+textarea {
+    padding: 10px 12px 10px 12px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    font-size: 14px;
+    letter-spacing: 1px
+}
+
+.card{
+    background-image:url(intro-bg.jpg) ;
+}
+
+@media screen and (max-width: 991px) {
+    .logo {
+        margin-left: 0px
+    }
+
+    .image {
+        width: 300px;
+        height: 220px
+    }
+
+    
+
+    .card2 {
+        border-top: 1px solid #EEEEEE !important;
+        margin: 0px 15px
+    }
+}
+    </style>  
+    
+    </head>  
+    
+    <body>
+        <!-- Use .container-fluid for a full width container, spanning the entire width of the viewport. -->
+      <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+
+
+        <div class="card card0 border-0">
+
+            <div class="row d-flex">
+
+
+<!-- ..........................div contain Logo............................... -->
+                        <div class="col-lg-6">
+
+                            <div class="card1 pb-5">
+                                <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+                                    <img src="must.png" class="image"> </div>
+                                </div>
+                        </div>
+<!-- ..........................div contain Logo............................... -->
+
+
+
+<!-- ..........................div contain Gpa & Term ............................... -->
+                <div class="col-lg-6">
+
+                        <div class="card2 card border-0 px-4 py-5">
+                            <div class="row px-3">
+                                 <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">GPA</h6>
+                                </label>
+                                 <input class="mb-4" type="number"  placeholder="Enter your GPA"> 
+                            </div>
+
+                            <div class="row px-3"> <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">TERM</h6>
+                                </label> <input type="text"  placeholder="Enter your Term"> </div>
+                                
+                        <hr>
+                        {% block content %}
+                    <form method= POSt action = "#">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <select class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+                                    <option value="" disabled selected>Choose your country</option>
+                                    {% for courses in course %}
+                                        <option value="{{courses.id}}">{{courses.Course_name}}</option>
+                                    {% endfor %}
+                                  </select>
+                                  <label class="mdb-main-label">Label example</label>
+                                  <button class="btn-save btn btn-primary btn-sm">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    <div style="margin-left:250px;"> <button type="checkbox" class="btn-lg ">Generate Plan</button> </div>
+                </div>
+                    </form>
+                        {% endblock %}
+                </div>
+ <!-- ..........................div contain Logo............................... -->
+            </div>
+        </div>
+    </div>
+    <select class="mdb-select md-form colorful-select dropdown-danger" multiple>
+        <option value="" disabled selected>Choose your country</option>
+        <option value="1">USA</option>
+        <option value="2">Germany</option>
+        <option value="3">France</option>
+        <option value="3">Poland</option>
+        <option value="3">Japan</option>
+      </select>
+      <label class="mdb-main-label">Label example</label>
+      <button class="btn-save btn btn-danger btn-sm">Save</button>
+    </body>
+</html>
